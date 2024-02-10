@@ -1,6 +1,7 @@
 pub mod chassis;
 pub mod engine;
 pub mod car;
+pub mod toy_cars;
 
 //This module re-exports things from child modules which should be included everywhere in the crate.
 pub(crate) mod crate_universal{
@@ -11,7 +12,7 @@ pub(crate) mod crate_universal{
 //This module re-exports things which should be used in every child module.
 mod mod_universal{
     #![allow(unused_imports)]
-    pub(super) use crate::crate_universal::*;
+    pub use super::super::mod_universal::*; //Double-super lets multi-level nesting work
     pub(super) use super::engine::Engine;
     pub(super) use super::chassis::*;
     pub(super) use super::engine::*;
@@ -20,4 +21,5 @@ mod mod_universal{
 //This module re-exports things from child modules which should be on the public intrerface of the crate.
 pub mod interface{
     pub use super::car::Car;
+    pub use super::toy_cars::interface::*;
 }
