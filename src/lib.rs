@@ -11,18 +11,18 @@ mod crate_universal{
     pub use std::fmt::{Display, Formatter}; //Common utility items such as "Display" may be re-exported here (up to taste).
     pub use crate::cars::crate_universal::*;
     pub use crate::trucks::crate_universal::*;
-    pub use crate::common_parts::*;
     pub use crate::template::crate_universal::*;
+    pub use crate::common_parts::*;
 }
 
-//This module isn't necessary, but it lets the standard_prefix work for top level modules as well.
+//This module isn't necessary, but it lets the standard_prefix work for top level modules as well. (see common_parts.rs)
 mod mod_universal{
     #![allow(unused_imports)]
     pub use crate::crate_universal::*;
-    pub use crate::common_parts::*;
 }
 
 //This interface should re-export things which are meant to be used by other crates.
+//As a default, this should just re-export the interface of each sub module; if a sub-module doesn't have anything for the crate interface, it just has an empty interface module.
 pub mod interface{
     pub use crate::cars::interface::*;
     pub use crate::trucks::interface::*;
