@@ -8,7 +8,6 @@ pub(crate) mod crate_universal{
 //This module re-exports things which should be used in every child module.
 mod mod_universal{
     #![allow(unused_imports)]
-    pub use super::super::mod_universal::*; //Double-super lets multi-level nesting work
 }
 
 //This module re-exports things from child modules which should be on the public intrerface of the crate.

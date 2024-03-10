@@ -4,8 +4,7 @@ pub mod trucks;
 pub mod template;
 pub mod common_parts;
 
-//This module should hold items you want to be directly included in every file in your crate.
-//Modules don't have to use this, but it should usually be convenient for most to do so.
+//This module should hold items you want to be exposed as u::<foo> in any file in this crate
 mod crate_universal{
     #![allow(unused_imports)]
     pub use std::fmt::{Display, Formatter}; //Common utility items such as "Display" may be re-exported here (up to taste).
@@ -17,8 +16,6 @@ mod crate_universal{
 
 //This module isn't necessary, but it lets the standard_prefix work for top level modules as well. (see common_parts.rs)
 mod mod_universal{
-    #![allow(unused_imports)]
-    pub use crate::crate_universal::*;
 }
 
 //This interface should re-export things which are meant to be used by other crates.
@@ -35,7 +32,9 @@ pub mod macro_prefix{
     macro_rules! standard_prefix {
         () => {
             #[allow(unused_imports)]
-            use super::mod_universal::*;
+            use super::mod_universal as m;
+            #[allow(unused_imports)]
+            use crate::crate_universal as u;
         };
     }
     //Tests are set up to have the same visibility as their parent module.
@@ -45,7 +44,9 @@ pub mod macro_prefix{
             #[allow(unused_imports)]
             use super::*;
             #[allow(unused_imports)]
-            use super::super::mod_universal::*;
+            use super::super::mod_universal as m;
+            #[allow(unused_imports)]
+            use crate::crate_universal as u;
         };
     }
     pub(crate) use standard_prefix;

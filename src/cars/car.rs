@@ -7,17 +7,17 @@ mod car_tests;
 
 //The car components were re-exported by mod_universal, so they are available here.
 pub struct Car{
-    chassis : Chassis,
-    engine : Engine,
-    paint : Paint,
-    windows : Vec<Window>
+    chassis : m::Chassis,
+    engine : m::Engine,
+    paint : u::Paint,
+    windows : Vec<m::Window>
 }
 
 impl Car{
-    pub fn new(paint : Paint) -> Car{
+    pub fn new(paint : u::Paint) -> Car{
         Car{
-            chassis : Chassis,
-            engine : Engine,
+            chassis : m::Chassis,
+            engine : m::Engine,
             paint,
             windows : Vec::new()
         }
@@ -25,8 +25,8 @@ impl Car{
 }
 
 //Common traits such as "Display" are re-exported by crate_universal
-impl Display for Car{
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+impl u::Display for Car{
+    fn fmt(&self, f: &mut u::Formatter<'_>) -> std::fmt::Result {
         write!(f, "Car with {} windows, a {:?}, a {}, and {} paint.", self.windows.len(), self.chassis, self.engine, self.paint)
     }
 }

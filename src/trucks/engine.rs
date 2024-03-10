@@ -4,8 +4,8 @@ crate::standard_prefix!();
 #[derive(Debug)]
 pub(crate) struct Engine;
 
-impl Display for Engine{
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+impl u::Display for Engine{
+    fn fmt(&self, f: &mut u::Formatter<'_>) -> std::fmt::Result {
         write!(f, "A Truck Engine")
     }
 }

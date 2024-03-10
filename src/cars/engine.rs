@@ -9,8 +9,8 @@ mod engine_tests;
 #[derive(Debug)]
 pub(crate) struct Engine;
 
-impl Display for Engine{
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+impl u::Display for Engine{
+    fn fmt(&self, f: &mut u::Formatter<'_>) -> std::fmt::Result {
         write!(f, "A Car Engine")
     }
 }
