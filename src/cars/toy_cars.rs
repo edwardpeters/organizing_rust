@@ -8,7 +8,7 @@ pub(crate) mod crate_universal{
 //This module re-exports things which should be used in every child module.
 mod mod_universal{
     #![allow(unused_imports)]
-    pub(super) use super::super::mod_universal::{*, Chassis as _}; //Double-super lets multi-level nesting work
+    pub(super) use super::super::mod_universal::{*}; //Double-super lets multi-level nesting work
     pub(super) use super::chassis::Chassis;
 }
 
